@@ -1,21 +1,22 @@
-# Базовый образ с Python
 FROM python:3.10-slim
 
-# Установка зависимостей системы
+# Установка зависимостей для сборки aiohttp
 RUN apt-get update && \
-    apt-get install -y gcc libffi-dev libpq-dev && \
+    apt-get install -y gcc libffi-dev libpq-dev python3-dev build-essential libssl-dev && \
     apt-get clean
 
 # Установка рабочей директории
 WORKDIR /app
 
-# Копируем все файлы
+# Копируем проект
 COPY . .
 
-# Установка зависимостей из requirements.txt
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+# Обновление pip и установка зависимостей
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Скрипт запуска
+# Даём права на выполнение скрипта запуска
 RUN chmod +x start.sh
 
+# Запускаем бота
 CMD ["./start.sh"]
