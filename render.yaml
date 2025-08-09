@@ -6,8 +6,12 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
     envVars:
+      - key: CHAT_ID
+        value: -1002579006711
       - key: PYTHON_VERSION
         value: 3.10.13
       - key: PORT
         value: 8000
+      - key: TOKEN
+        value: 8458068788:AAE7qy0wCIHyELY6Ju-keT82ROtn_e1doQ8
     autoDeploy: true
