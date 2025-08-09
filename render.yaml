@@ -1,12 +1,13 @@
 services:
-  - type: worker
-    name: koleso-fortuna
+  - type: web
+    name: Колесо Фортуны от RandomShop🍀
     env: python
-    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: python bot.py
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
     envVars:
-      - key: TOKEN
-        sync: false
-      - key: CHAT_ID
-        sync: false
+      - key: PYTHON_VERSION
+        value: 3.10.13
+      - key: PORT
+        value: 8000
+    autoDeploy: true
