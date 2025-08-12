@@ -110,6 +110,19 @@ async def spin_handler(message: types.Message):
             except Exception as e:
                 logging.warning(f"Не удалось отправить в чат: {e}")
 
+# --- WEB SERVER ---
+async def handle(request):
+    return web.Response(text="Bot is running")
+
+async def start_webserver():
+    app = web.Application()
+    app.add_routes([web.get('/', handle)])
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8000))
+    site = web.TCPSite(runner, '0.0.0.0', port)
+    await site.start()
+    
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     executor.start_polling(dp, skip_updates=True)
