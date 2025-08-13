@@ -88,10 +88,6 @@ async def spin_handler(message: types.Message):
         await message.reply("⛔️ У тебя закончились попытки. Ты уже использовал все 3 прокрута.")
         return
 
-@dp.message_handler(commands=['ping'])
-async def ping_handler(message: types.Message):
-    await message.reply("🏓 Pong! Бот на связи.")
-
     prize = random.choice(prizes)
     user_attempts[user_id] += 1
 
